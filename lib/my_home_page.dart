@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -11,6 +13,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  int _red = 0;
+  int _green = 0;
+  int _blue = 0;
+
+  void _changeColor() {
+    _red = Random.secure().nextInt(256);
+    _green = Random.secure().nextInt(256);
+    _blue = Random.secure().nextInt(256);
+    setState(() {
+      widget.color = Color.fromRGBO(_red, _green, _blue, 1);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: _changeColor,
         tooltip: 'Change color',
         child: const Icon(Icons.palette),
         backgroundColor: widget.color,
